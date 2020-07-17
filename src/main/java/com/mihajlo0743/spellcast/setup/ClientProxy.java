@@ -1,7 +1,7 @@
 package com.mihajlo0743.spellcast.setup;
 
 import com.mihajlo0743.spellcast.hud.SpellGUI;
-import com.mihajlo0743.spellcast.stats.StatHandler;
+import com.mihajlo0743.spellcast.handlers.StatHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;

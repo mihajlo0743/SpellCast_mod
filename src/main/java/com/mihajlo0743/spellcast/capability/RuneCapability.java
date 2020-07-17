@@ -32,6 +32,7 @@ public class RuneCapability implements ICapabilityProvider {
             public boolean canEquip(String identifier, LivingEntity livingEntity) {
                 return true;
             }
+
         });
     }
 
