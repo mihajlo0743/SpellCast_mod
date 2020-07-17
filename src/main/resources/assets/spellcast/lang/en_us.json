@@ -1,15 +1,15 @@
 {
-  "itemgroup.techoria": "Techoria",
-  "block.techoria.tech_block": "Mysterious block!",
+  "itemgroup.spellcast": "Spellcast Test",
+  "block.spellcast.tech_block": "Mysterious block!",
 
-  "item.techoria.jetpack": "Jetpack",
-  "item.techoria.dash_rune": "Dash Rune",
+  "item.spellcast.jetpack": "Jetpack",
+  "item.spellcast.dash_rune": "Dash Rune",
   "curios.identifier.spellbelt": "Belt",
   "curios.identifier.spellrune": "Rune",
   "curios.identifier.spellamulet": "Amulet",
   "curios.identifier.spellboots": "Boots",
 
-  "key.techoria.rune_action": "Use rune",
-  "key.techoria.category": "SpellCast"
+  "key.spellcast.rune_action": "Use rune",
+  "key.spellcast.category": "SpellCast"
 
 }

@@ -26,7 +26,7 @@ public class SpellGUI {
             int left = mc.mainWindow.getScaledWidth()  /*+ 91*/;
             int top = mc.mainWindow.getScaledHeight();
             //  Drawing Slots
-            Minecraft.getInstance().getTextureManager().bindTexture(new ResourceLocation("techoria:hud/hud-texture.png"/*"textures/item/dash_rune.png"*/));
+            Minecraft.getInstance().getTextureManager().bindTexture(new ResourceLocation("spellcast:hud/hud-texture.png"/*"textures/item/dash_rune.png"*/));
             for (byte i=1; i<=3; i++) {
                 gui.blit(left - i*25 - 15, top - 25, 31, 0, 21, 21);
 

@@ -12,7 +12,7 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 
 public class ModSetup {
 
-    public ItemGroup itemGroup = new ItemGroup("techoria") {
+    public ItemGroup itemGroup = new ItemGroup("spellcast") {
         @Override
         public ItemStack createIcon() {
             return new ItemStack(ModBlocks.TECH_BLOCK);

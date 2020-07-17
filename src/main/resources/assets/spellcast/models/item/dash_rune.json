@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "techoria:item/dash_rune"
+        "layer0": "spellcast:item/dash_rune"
     }
 }

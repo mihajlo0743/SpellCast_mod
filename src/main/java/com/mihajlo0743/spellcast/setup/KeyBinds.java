@@ -12,7 +12,7 @@ public class KeyBinds {
         ModKeyBindings = new KeyBinding[1]; //Create array
 
         //Assign all key binds to this array
-        ModKeyBindings[0] = new KeyBinding("key.techoria.rune_action", 340, "key.techoria.category");
+        ModKeyBindings[0] = new KeyBinding("key.spellcast.rune_action", 340, "key.spellcast.category");
 
 
         //Actually register all keys

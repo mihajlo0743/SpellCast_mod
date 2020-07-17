@@ -32,7 +32,7 @@ import top.theillusivec4.curios.api.imc.CurioIMCMessage;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod("techoria")
+@Mod("spellcast")
 public class Spellcast
 {
     public static IProxy proxy = DistExecutor.runForDist(()->()->new ClientProxy(), ()->()->new ServerProxy());
@@ -74,7 +74,7 @@ public class Spellcast
         InterModComms.sendTo("curios", "register_type", ()-> new CurioIMCMessage("spellamulet").setEnabled(true).setSize(1).setHidden(false));
         InterModComms.sendTo("curios", "register_type", ()-> new CurioIMCMessage("spellboots").setEnabled(true).setSize(1).setHidden(false));
         // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("techoria", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+        InterModComms.sendTo("spellcast", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
     }
 
     private void processIMC(final InterModProcessEvent event)

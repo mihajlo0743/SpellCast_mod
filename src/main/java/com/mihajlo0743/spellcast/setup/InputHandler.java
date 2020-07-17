@@ -2,6 +2,7 @@ package com.mihajlo0743.spellcast.setup;
 
 import com.mihajlo0743.spellcast.capability.IStats;
 import com.mihajlo0743.spellcast.capability.StatsProvider;
+import com.mihajlo0743.spellcast.stats.StatHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,6 +20,7 @@ public class InputHandler {
         if (Minecraft.getInstance().gameSettings.keyBindJump.isPressed()){
             IStats stats = Minecraft.getInstance().player.getCapability(StatsProvider.STATS_CAP).orElse(StatsProvider.STATS_CAP.getDefaultInstance());
             stats.changeMana(-1);
+            StatHandler.hover();
         }
         
     }

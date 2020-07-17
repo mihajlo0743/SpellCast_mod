@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "techoria:tech_block"
+          "name": "spellcast:tech_block"
         }
       ],
       "conditions": [
