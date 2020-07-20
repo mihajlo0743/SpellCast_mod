@@ -1,5 +1,7 @@
 package com.mihajlo0743.spellcast.capability;
 
+import com.mihajlo0743.spellcast.Spellcast;
+
 public class PlayerStats  implements IStats
 {
     public int Health = 100;
@@ -9,6 +11,9 @@ public class PlayerStats  implements IStats
     public float Mana = 100;
     public int MaxMana = 100;
     public boolean Lock = false;
+
+    private int defaultMana = 100;
+    private int defaultShield = 100;
 
     public PlayerStats(){
         Health = 100;
@@ -24,6 +29,12 @@ public class PlayerStats  implements IStats
     }
 
     @Override
+    public void revertShield() {
+        MaxShield = defaultShield;
+
+    }
+
+    @Override
     public void changeShield(int i) {
         Shield= clamp(Shield+i, MaxShield);
     }
@@ -32,6 +43,12 @@ public class PlayerStats  implements IStats
     public void setMaxMana(int i) {
         MaxMana = i;
         Mana = i;
+    }
+
+    @Override
+    public void revertMana() {
+        MaxMana = defaultMana;
+        Spellcast.LOGGER.debug("reverted!");
     }
 
     @Override

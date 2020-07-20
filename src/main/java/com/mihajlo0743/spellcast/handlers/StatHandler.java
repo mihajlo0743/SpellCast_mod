@@ -10,19 +10,28 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class StatHandler  {
     public static boolean refillable = true;
+    private int skipping_ticks = 60;
     @SubscribeEvent
     public void tick(TickEvent.PlayerTickEvent tick){
         IStats stats = tick.player.getCapability(StatsProvider.STATS_CAP).orElse(StatsProvider.STATS_CAP.getDefaultInstance());
-        if (stats.getMana()<stats.getMaxMana() && (refillable || stats.isLocked())) {
-            stats.changeMana(0.8f);
+        if (stats.isLocked() && stats.getMana()<0.5f){
+            refillable = false;
+            if (skipping_ticks-- == 0) {
+                refillable = true;
+                skipping_ticks = 60;
+            }
         }
 
-        if (stats.getMana()<1) stats.Lock(true);
-        if ( stats.isLocked() && stats.getMana()==stats.getMaxMana()) stats.Lock(false);
+        if (stats.getMana()<stats.getMaxMana() && (refillable/* || stats.isLocked()*/)) {
+            stats.changeMana(0.6f);
+        }
 
-        if (InputHandler.up && stats.getMana()>0 && !stats.isLocked()){
+        if (stats.getMana()<1) stats.Lock(true); // Lock
+        if ( stats.isLocked() && stats.getMana()==stats.getMaxMana()) stats.Lock(false); // Unlock
+
+        if (InputHandler.up && tick.player.fallDistance>0.01f && stats.getMana()>0 && !stats.isLocked()){
             //tick.player.setNoGravity(true);
-            stats.changeMana(-1.2f);
+            stats.changeMana(-1.5f);
             hover(tick.player);
 
             //tick.player.move(MoverType.SELF, new Vec3d(0, 0.2, 0));
@@ -35,6 +44,7 @@ public class StatHandler  {
         //handlers.changeMana(-1.2f);
         //Minecraft.getInstance().player.move(MoverType.SELF, new Vec3d(0, 0.2, 0));
         Vec3d motion = player.getMotion();
-		player.setMotion(motion.getX(), 0.3, motion.getZ());
+		player.setMotion(motion.getX(), motion.getY()>0 ? 0.14 : motion.getY()+0.05, motion.getZ());
+		player.fallDistance = 1;
     }
 }

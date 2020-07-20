@@ -3,10 +3,11 @@ package com.mihajlo0743.spellcast.capability;
 public interface IStats {
 
     public void setShieldMax(byte max, byte val);
-
+    public void revertShield();
     public void changeShield(int i);
 
     public void setMaxMana(int i);
+    public void revertMana();
     public void changeMana(float i);
     public void changeHP(int i);
 

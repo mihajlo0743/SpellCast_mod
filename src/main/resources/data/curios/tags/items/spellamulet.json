@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "spellcast:common_amulet",
+    "spellcast:uncommon_amulet",
+    "spellcast:rare_amulet",
+    "spellcast:epic_amulet"
+  ]
+}

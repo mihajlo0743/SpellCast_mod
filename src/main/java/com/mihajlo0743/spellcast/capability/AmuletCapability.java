@@ -1,7 +1,9 @@
 package com.mihajlo0743.spellcast.capability;
 
 import com.mihajlo0743.spellcast.Spellcast;
+import com.mihajlo0743.spellcast.items.Amulet;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -12,11 +14,11 @@ import top.theillusivec4.curios.api.capability.ICurio;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class RuneCapability implements ICapabilityProvider {
+public class AmuletCapability implements ICapabilityProvider {
 
     final LazyOptional<ICurio> capabl;
 
-    public RuneCapability(){
+    public AmuletCapability(){
         capabl = LazyOptional.of(() -> new ICurio(){
             @Override
             public boolean canRightClickEquip() {
@@ -25,8 +27,22 @@ public class RuneCapability implements ICapabilityProvider {
 
             @Override
             public void onEquipped(String identifier, LivingEntity livingEntity) {
+                livingEntity.getCapability(CuriosCapability.INVENTORY).map(h->h.getStackInSlot(identifier, 0)).ifPresent(itemStack -> {
 
-                Spellcast.LOGGER.debug("Equipped, " + livingEntity.getCapability(CuriosCapability.INVENTORY).map((h)->(h.getStackInSlot(identifier, 0))));
+                    if (itemStack.getItem() instanceof Amulet){
+                        Amulet amulet = (Amulet) itemStack.getItem();
+                        Spellcast.LOGGER.debug("Equipped: "+amulet.getMana());
+                        IStats stats = livingEntity.getCapability(StatsProvider.STATS_CAP).orElse(StatsProvider.STATS_CAP.getDefaultInstance());
+                        stats.setMaxMana(stats.getMaxMana() + amulet.getMana());
+                        Spellcast.LOGGER.debug("Mana: "+stats.getMaxMana()+":"+amulet.getMana());
+                    }
+                });
+            }
+
+            @Override
+            public void onUnequipped(String identifier, LivingEntity livingEntity) {
+               IStats stats = livingEntity.getCapability(StatsProvider.STATS_CAP).orElse(StatsProvider.STATS_CAP.getDefaultInstance());
+               stats.revertMana();
             }
 
             @Nonnull
@@ -42,11 +58,9 @@ public class RuneCapability implements ICapabilityProvider {
 
         });
     }
-
-
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-         return CuriosCapability.ITEM.orEmpty(cap, capabl);
+        return CuriosCapability.ITEM.orEmpty(cap, capabl);
     }
 }

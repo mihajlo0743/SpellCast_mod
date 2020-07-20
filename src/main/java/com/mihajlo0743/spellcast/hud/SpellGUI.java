@@ -1,15 +1,19 @@
 package com.mihajlo0743.spellcast.hud;
 
+import com.mihajlo0743.spellcast.Spellcast;
 import com.mihajlo0743.spellcast.capability.IStats;
 import com.mihajlo0743.spellcast.capability.StatsProvider;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IngameGui;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.BossInfo;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import top.theillusivec4.curios.api.CuriosAPI;
+import top.theillusivec4.curios.api.capability.ICurio;
 
 import static org.lwjgl.glfw.GLFW.glfwSetWindowTitle;
 
@@ -22,7 +26,9 @@ public class SpellGUI {
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public void onOverlay(RenderGameOverlayEvent.Pre event){
         if (event.getType() == RenderGameOverlayEvent.ElementType.POTION_ICONS) {
-        GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
+            gui.getFontRenderer().drawString("Spellcast mod | Alpha ", 5,3, BossInfo.Color.WHITE.getFormatting().getColor());
+            gui.getFontRenderer().drawString(Spellcast.VERSION+" - Not final",5,gui.getFontRenderer().FONT_HEIGHT+3, BossInfo.Color.WHITE.getFormatting().getColor());
+        //GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
             int left = mc.mainWindow.getScaledWidth()  /*+ 91*/;
             int top = mc.mainWindow.getScaledHeight();
             //  Drawing Slots

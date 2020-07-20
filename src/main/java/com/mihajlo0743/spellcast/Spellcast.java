@@ -2,6 +2,7 @@ package com.mihajlo0743.spellcast;
 
 import com.mihajlo0743.spellcast.blocks.ModBlocks;
 import com.mihajlo0743.spellcast.blocks.Tech_block;
+import com.mihajlo0743.spellcast.items.Amulet;
 import com.mihajlo0743.spellcast.items.DashRune;
 import com.mihajlo0743.spellcast.items.Rune;
 import com.mihajlo0743.spellcast.setup.ClientProxy;
@@ -40,6 +41,7 @@ public class Spellcast
     public static final Logger LOGGER = LogManager.getLogger();
     public static ModSetup setup = new ModSetup();
     public static final String MODID = "spellcast";
+    public static final String VERSION = "0.2.25.154";
 
     public Spellcast() {
         // Register the setup method for modloading
@@ -106,7 +108,11 @@ public class Spellcast
             event.getRegistry().registerAll(
                     new DashRune(),
                     new Rune(Rarity.COMMON, "placeholder_rune"),
-                    new BlockItem(ModBlocks.TECH_BLOCK, props.rarity(Rarity.EPIC)).setRegistryName("tech_block")
+                    new BlockItem(ModBlocks.TECH_BLOCK, props.rarity(Rarity.EPIC)).setRegistryName("tech_block"),
+                    new Amulet(Rarity.COMMON, 200, "common_amulet"),
+                    new Amulet(Rarity.UNCOMMON, 300, "uncommon_amulet"),
+                    new Amulet(Rarity.RARE, 500, "rare_amulet"),
+                    new Amulet(Rarity.EPIC, 900, "epic_amulet")
             );
             LOGGER.debug(MobEntity.getSlotForItemStack(new Rune(Rarity.COMMON, "placeholder_rune").getDefaultInstance()));
         }
