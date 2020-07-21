@@ -3,7 +3,7 @@ PvP mod for Minecraft 1.14.4 inspired by [Spellbreak](https://playspellbreak.com
 
 ## State:
 This mod currently in **early alpha**, some features are NYI
-* [ ] Gaunglets - NYI
+* [ ] Gauntlets - NYI
 * [ ] Runes - WIP
 * [ ] Equipment - WIP
 * [x] Fly mechanics - improving
