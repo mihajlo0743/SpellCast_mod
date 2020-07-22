@@ -3,6 +3,8 @@ package com.mihajlo0743.spellcast.capability;
 import com.mihajlo0743.spellcast.Spellcast;
 import com.mihajlo0743.spellcast.items.Amulet;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.brain.Brain;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
@@ -28,21 +30,19 @@ public class AmuletCapability implements ICapabilityProvider {
             @Override
             public void onEquipped(String identifier, LivingEntity livingEntity) {
                 livingEntity.getCapability(CuriosCapability.INVENTORY).map(h->h.getStackInSlot(identifier, 0)).ifPresent(itemStack -> {
-
                     if (itemStack.getItem() instanceof Amulet){
                         Amulet amulet = (Amulet) itemStack.getItem();
                         Spellcast.LOGGER.debug("Equipped: "+amulet.getMana());
                         IStats stats = livingEntity.getCapability(StatsProvider.STATS_CAP).orElse(StatsProvider.STATS_CAP.getDefaultInstance());
                         stats.setMaxMana(stats.getMaxMana() + amulet.getMana());
-                        Spellcast.LOGGER.debug("Mana: "+stats.getMaxMana()+":"+amulet.getMana());
+                        Spellcast.LOGGER.debug("Mana: "+stats.getMaxMana()+":"+amulet.getMana()+ ((PlayerEntity)livingEntity).getName().getString());
                     }
                 });
             }
 
             @Override
             public void onUnequipped(String identifier, LivingEntity livingEntity) {
-               IStats stats = livingEntity.getCapability(StatsProvider.STATS_CAP).orElse(StatsProvider.STATS_CAP.getDefaultInstance());
-               stats.revertMana();
+               livingEntity.getCapability(StatsProvider.STATS_CAP).orElse(StatsProvider.STATS_CAP.getDefaultInstance()).revertMana();
             }
 
             @Nonnull

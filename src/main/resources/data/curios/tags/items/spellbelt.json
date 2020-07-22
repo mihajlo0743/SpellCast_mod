@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "spellcast:common_belt",
+    "spellcast:uncommon_belt",
+    "spellcast:rare_belt",
+    "spellcast:epic_belt"
+  ]
+}

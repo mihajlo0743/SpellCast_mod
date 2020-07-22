@@ -26,7 +26,10 @@ public class StatHandler  {
             stats.changeMana(0.6f);
         }
 
-        if (stats.getMana()<1) stats.Lock(true); // Lock
+        if (stats.getMana()<1 && !stats.isLocked()) {
+            System.out.println(stats.getMaxMana());
+            stats.Lock(true); // Lock
+        }
         if ( stats.isLocked() && stats.getMana()==stats.getMaxMana()) stats.Lock(false); // Unlock
 
         if (InputHandler.up && tick.player.fallDistance>0.01f && stats.getMana()>0 && !stats.isLocked()){
@@ -44,7 +47,7 @@ public class StatHandler  {
         //handlers.changeMana(-1.2f);
         //Minecraft.getInstance().player.move(MoverType.SELF, new Vec3d(0, 0.2, 0));
         Vec3d motion = player.getMotion();
-		player.setMotion(motion.getX(), motion.getY()>0 ? 0.14 : motion.getY()+0.05, motion.getZ());
-		player.fallDistance = 1;
+		player.setMotion(motion.getX(), motion.getY()>0 ? 0.14 : motion.getY()+0.07, motion.getZ());
+		//player.fallDistance = 1;
     }
 }

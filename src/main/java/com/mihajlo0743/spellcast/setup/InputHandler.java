@@ -1,9 +1,11 @@
 package com.mihajlo0743.spellcast.setup;
 
+import com.mihajlo0743.spellcast.Spellcast;
 import com.mihajlo0743.spellcast.handlers.StatHandler;
 import net.minecraft.client.GameSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -29,12 +31,6 @@ public class InputHandler {
         }
         if (!Minecraft.getInstance().gameSettings.keyBindJump.isPressed())
             Minecraft.getInstance().player.setNoGravity(false);*/
-
-    }
-
-    @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event) {
-        if (event.phase != TickEvent.Phase.START) return;
         Minecraft mc = Minecraft.getInstance();
         if (mc.getConnection() == null)
             return;
@@ -47,5 +43,12 @@ public class InputHandler {
             //mc.player.setMotion(mc.player.getMotion().getX(), 0, mc.player.getMotion().getY());
             StatHandler.refillable = !upNow;
         }
+
     }
+
+    /*@SubscribeEvent
+    public void onClientTick(TickEvent.ClientTickEvent event) {
+        if (event.phase != TickEvent.Phase.START) return;
+
+    }*/
 }

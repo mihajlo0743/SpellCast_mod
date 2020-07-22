@@ -2,20 +2,27 @@ package com.mihajlo0743.spellcast;
 
 import com.mihajlo0743.spellcast.blocks.ModBlocks;
 import com.mihajlo0743.spellcast.blocks.Tech_block;
-import com.mihajlo0743.spellcast.items.Amulet;
-import com.mihajlo0743.spellcast.items.DashRune;
-import com.mihajlo0743.spellcast.items.Rune;
+import com.mihajlo0743.spellcast.capability.StatsProvider;
+import com.mihajlo0743.spellcast.items.*;
 import com.mihajlo0743.spellcast.setup.ClientProxy;
 import com.mihajlo0743.spellcast.setup.IProxy;
 import com.mihajlo0743.spellcast.setup.ModSetup;
 import com.mihajlo0743.spellcast.setup.ServerProxy;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.BookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
+import net.minecraft.nbt.ByteNBT;
+import net.minecraft.nbt.EndNBT;
+import net.minecraft.nbt.IntNBT;
+import net.minecraft.world.GameRules;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
@@ -24,12 +31,14 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.imc.CurioIMCMessage;
 
+import javax.security.auth.login.Configuration;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -40,8 +49,9 @@ public class Spellcast
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
     public static ModSetup setup = new ModSetup();
+    public static Configuration config;
     public static final String MODID = "spellcast";
-    public static final String VERSION = "0.2.25.154";
+    public static final String VERSION = "0.2.26.8";
 
     public Spellcast() {
         // Register the setup method for modloading
@@ -91,6 +101,11 @@ public class Spellcast
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
         LOGGER.info("HELLO from server starting");
+        event.getServer().getWorld(DimensionType.OVERWORLD).getGameRules().write().put("test", new IntNBT(0));
+    }
+    @SubscribeEvent
+    public void OnStartedS(EntityJoinWorldEvent event){
+        //setup.stats = Minecraft.getInstance().player.getCapability(StatsProvider.STATS_CAP).orElse(StatsProvider.STATS_CAP.getDefaultInstance());
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
@@ -112,7 +127,15 @@ public class Spellcast
                     new Amulet(Rarity.COMMON, 200, "common_amulet"),
                     new Amulet(Rarity.UNCOMMON, 300, "uncommon_amulet"),
                     new Amulet(Rarity.RARE, 500, "rare_amulet"),
-                    new Amulet(Rarity.EPIC, 900, "epic_amulet")
+                    new Amulet(Rarity.EPIC, 900, "epic_amulet"),
+                    new Belt(Rarity.COMMON, 200, "common_belt"),
+                    new Belt(Rarity.UNCOMMON, 300, "uncommon_belt"),
+                    new Belt(Rarity.RARE, 500, "rare_belt"),
+                    new Belt(Rarity.EPIC, 900, "epic_belt"),
+                    new Boots(Rarity.COMMON, 200, "common_boots"),
+                    new Boots(Rarity.UNCOMMON, 300, "uncommon_boots"),
+                    new Boots(Rarity.RARE, 500, "rare_boots"),
+                    new Boots(Rarity.EPIC, 900, "epic_boots")
             );
             LOGGER.debug(MobEntity.getSlotForItemStack(new Rune(Rarity.COMMON, "placeholder_rune").getDefaultInstance()));
         }

@@ -15,12 +15,6 @@ public class PlayerStats  implements IStats
     private int defaultMana = 100;
     private int defaultShield = 100;
 
-    public PlayerStats(){
-        Health = 100;
-        Shield = 100;
-        Mana = 100;
-
-    }
 
     @Override
     public void setShieldMax(byte max, byte val) {

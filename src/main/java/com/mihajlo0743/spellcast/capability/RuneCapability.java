@@ -23,11 +23,6 @@ public class RuneCapability implements ICapabilityProvider {
                 return false;
             }
 
-            @Override
-            public void onEquipped(String identifier, LivingEntity livingEntity) {
-
-                Spellcast.LOGGER.debug("Equipped, " + livingEntity.getCapability(CuriosCapability.INVENTORY).map((h)->(h.getStackInSlot(identifier, 0))));
-            }
 
             @Nonnull
             @Override

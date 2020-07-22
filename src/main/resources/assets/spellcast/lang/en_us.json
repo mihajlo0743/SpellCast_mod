@@ -9,6 +9,11 @@
   "curios.identifier.spellamulet": "Amulet",
   "curios.identifier.spellboots": "Boots",
 
+
+  "item.spellcast.epic_boots": "Epic Boots",
+  "item.spellcast.epic_belt": "Epic Belt",
+  "item.spellcast.epic_amulet": "Epic Amulet",
+
   "key.spellcast.rune_action": "Use rune",
   "key.spellcast.category": "SpellCast"
 
