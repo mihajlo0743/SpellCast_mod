@@ -11,6 +11,9 @@ This mod currently in **early alpha**, some features are NYI
 * [ ] VFX - TODO
 * [x] Bugs - included
 
+## Screenshots
+
+![Screenshot](https://imgur.com/lt99mm9.png)
 
 ## Dependencies 
 In order to use this mod in game you need to install [CuriousAPI](https://www.curseforge.com/minecraft/mc-mods/curios)
