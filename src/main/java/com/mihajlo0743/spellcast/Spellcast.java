@@ -2,23 +2,20 @@ package com.mihajlo0743.spellcast;
 
 import com.mihajlo0743.spellcast.blocks.ModBlocks;
 import com.mihajlo0743.spellcast.blocks.Tech_block;
-import com.mihajlo0743.spellcast.capability.StatsProvider;
 import com.mihajlo0743.spellcast.items.*;
+import com.mihajlo0743.spellcast.items.runes.DashRune;
+import com.mihajlo0743.spellcast.items.runes.InvisRune;
+import com.mihajlo0743.spellcast.items.runes.PlaceholderRune;
+import com.mihajlo0743.spellcast.items.runes.SpringstepRune;
 import com.mihajlo0743.spellcast.setup.ClientProxy;
 import com.mihajlo0743.spellcast.setup.IProxy;
 import com.mihajlo0743.spellcast.setup.ModSetup;
 import com.mihajlo0743.spellcast.setup.ServerProxy;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.BookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
-import net.minecraft.nbt.ByteNBT;
-import net.minecraft.nbt.EndNBT;
 import net.minecraft.nbt.IntNBT;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -31,7 +28,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -51,7 +47,7 @@ public class Spellcast
     public static ModSetup setup = new ModSetup();
     public static Configuration config;
     public static final String MODID = "spellcast";
-    public static final String VERSION = "0.2.26.8";
+    public static final String VERSION = "0.2.26.11";
 
     public Spellcast() {
         // Register the setup method for modloading
@@ -122,7 +118,9 @@ public class Spellcast
             //event.getRegistry().register(new BlockItem(ModBlocks.TECH_BLOCK, props.rarity(Rarity.EPIC)).setRegistryName("tech_block"));
             event.getRegistry().registerAll(
                     new DashRune(),
-                    new Rune(Rarity.COMMON, "placeholder_rune"),
+                    new PlaceholderRune(),
+                    new InvisRune(),
+                    new SpringstepRune(),
                     new BlockItem(ModBlocks.TECH_BLOCK, props.rarity(Rarity.EPIC)).setRegistryName("tech_block"),
                     new Amulet(Rarity.COMMON, 200, "common_amulet"),
                     new Amulet(Rarity.UNCOMMON, 300, "uncommon_amulet"),
@@ -137,7 +135,6 @@ public class Spellcast
                     new Boots(Rarity.RARE, 500, "rare_boots"),
                     new Boots(Rarity.EPIC, 900, "epic_boots")
             );
-            LOGGER.debug(MobEntity.getSlotForItemStack(new Rune(Rarity.COMMON, "placeholder_rune").getDefaultInstance()));
         }
 
     }

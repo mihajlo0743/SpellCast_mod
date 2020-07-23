@@ -16,7 +16,9 @@ import top.theillusivec4.curios.api.CuriosAPI;
 
 import javax.annotation.Nullable;
 
-public class Rune extends Item {
+public abstract class Rune extends Item {
+    public float cooldown = 0;
+
     public Rune(Rarity rarity) {
         super(new Properties()
                 .group(Spellcast.setup.spellGroup)
@@ -39,7 +41,7 @@ public class Rune extends Item {
         }).orElse(ItemStack.EMPTY));
     }
 
-
+    public abstract boolean acrivate();
 
     @Nullable
     @Override

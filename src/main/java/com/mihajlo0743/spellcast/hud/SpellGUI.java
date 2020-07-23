@@ -15,13 +15,15 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import top.theillusivec4.curios.api.capability.CuriosCapability;
 
+import java.awt.*;
+
 import static org.lwjgl.glfw.GLFW.glfwSetWindowTitle;
 
 public class SpellGUI {
 
-    private final Minecraft mc = Minecraft.getInstance();
-    private final IngameGui gui = mc.ingameGUI;
-    private final ItemRenderer itemRenderer = mc.getItemRenderer();
+    private static final Minecraft mc = Minecraft.getInstance();
+    private static final IngameGui gui = mc.ingameGUI;
+    private static final ItemRenderer itemRenderer = mc.getItemRenderer();
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onOverlay(RenderGameOverlayEvent.Post event){
@@ -87,7 +89,12 @@ public class SpellGUI {
 
         }
     }
+
+    public static void DrawCenteredString(String string){
+        gui.getFontRenderer().drawString(string, mc.mainWindow.getScaledWidth()/2, mc.mainWindow.getScaledHeight()/2, Color.WHITE.getRGB());
+    }
 }
+
 
 /*
 blit(

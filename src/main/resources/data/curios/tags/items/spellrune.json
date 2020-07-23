@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "spellcast:dash_rune",
+    "spellcast:invis_rune",
+    "spellcast:springstep_rune",
     "spellcast:placeholder_rune"
   ]
 }

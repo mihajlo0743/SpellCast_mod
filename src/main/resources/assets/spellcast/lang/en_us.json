@@ -2,8 +2,10 @@
   "itemgroup.spellcast": "Spellcast Test",
   "block.spellcast.tech_block": "Mysterious block!",
 
-  "item.spellcast.jetpack": "Jetpack",
   "item.spellcast.dash_rune": "Dash Rune",
+  "item.spellcast.invis_rune": "Invisibility Rune",
+  "item.spellcast.placeholder_rune": "Placeholder Rune[Debug only!]",
+  "item.spellcast.springstep_rune": "Springstep Rune",
   "curios.identifier.spellbelt": "Belt",
   "curios.identifier.spellrune": "Rune",
   "curios.identifier.spellamulet": "Amulet",
