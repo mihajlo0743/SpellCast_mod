@@ -1,10 +1,10 @@
 package com.mihajlo0743.spellcast.items.runes;
 
+import com.mihajlo0743.spellcast.Spellcast;
 import com.mihajlo0743.spellcast.items.Rune;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.Rarity;
-import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 
 public class InvisRune extends Rune {
     public InvisRune() {
@@ -13,7 +13,7 @@ public class InvisRune extends Rune {
 
     @Override
     public boolean acrivate() {
-        Minecraft.getInstance().player.addPotionEffect(new EffectInstance(Effect.get(14), 30,1));
+        Spellcast.proxy.getLocalPlayer().addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 200));
         return true;
     }
 }

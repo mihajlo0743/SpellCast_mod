@@ -2,7 +2,9 @@ package com.mihajlo0743.spellcast;
 
 import com.mihajlo0743.spellcast.blocks.ModBlocks;
 import com.mihajlo0743.spellcast.blocks.Tech_block;
-import com.mihajlo0743.spellcast.items.*;
+import com.mihajlo0743.spellcast.items.Amulet;
+import com.mihajlo0743.spellcast.items.Belt;
+import com.mihajlo0743.spellcast.items.Boots;
 import com.mihajlo0743.spellcast.items.runes.DashRune;
 import com.mihajlo0743.spellcast.items.runes.InvisRune;
 import com.mihajlo0743.spellcast.items.runes.PlaceholderRune;
@@ -47,7 +49,7 @@ public class Spellcast
     public static ModSetup setup = new ModSetup();
     public static Configuration config;
     public static final String MODID = "spellcast";
-    public static final String VERSION = "0.2.26.14";
+    public static final String VERSION = "0.2.26.20";
 
     public Spellcast() {
         // Register the setup method for modloading
