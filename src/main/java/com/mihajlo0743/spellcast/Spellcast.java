@@ -47,7 +47,7 @@ public class Spellcast
     public static ModSetup setup = new ModSetup();
     public static Configuration config;
     public static final String MODID = "spellcast";
-    public static final String VERSION = "0.2.26.11";
+    public static final String VERSION = "0.2.26.14";
 
     public Spellcast() {
         // Register the setup method for modloading

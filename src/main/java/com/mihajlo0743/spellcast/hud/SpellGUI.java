@@ -9,6 +9,7 @@ import net.minecraft.client.gui.IngameGui;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Timer;
 import net.minecraft.world.BossInfo;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -24,6 +25,7 @@ public class SpellGUI {
     private static final Minecraft mc = Minecraft.getInstance();
     private static final IngameGui gui = mc.ingameGUI;
     private static final ItemRenderer itemRenderer = mc.getItemRenderer();
+    private static String CenteredString = "";
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onOverlay(RenderGameOverlayEvent.Post event){
@@ -52,6 +54,10 @@ public class SpellGUI {
             gui.blit(4, top - 41, 0, 215, 116,11); // Background1
             gui.blit(5, top - 32, 0, 245, (stats.getHealth()/100) * 116,9); // Health
             gui.blit(5, top - 41, 0, 230,(stats.getShield()/stats.getMaxShld()) * 116,9); // Shield
+
+            if (CenteredString !=""){
+                gui.getFontRenderer().drawString(CenteredString, mc.mainWindow.getScaledWidth()/2, mc.mainWindow.getScaledHeight()/2, Color.WHITE.getRGB());
+            }
 
             // Draw items in GUI | WIP!
                 // Rune
@@ -91,8 +97,8 @@ public class SpellGUI {
     }
 
     public static void DrawCenteredString(String string){
-        gui.getFontRenderer().drawString(string, mc.mainWindow.getScaledWidth()/2, mc.mainWindow.getScaledHeight()/2, Color.WHITE.getRGB());
-    }
+            CenteredString = string;
+        }
 }
 
 

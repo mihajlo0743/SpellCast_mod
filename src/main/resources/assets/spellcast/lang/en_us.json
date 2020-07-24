@@ -16,6 +16,18 @@
   "item.spellcast.epic_belt": "Epic Belt",
   "item.spellcast.epic_amulet": "Epic Amulet",
 
+  "item.spellcast.rare_boots": "Rare Boots",
+  "item.spellcast.rare_belt": "Rare Belt",
+  "item.spellcast.rare_amulet": "Rare Amulet",
+
+  "item.spellcast.uncommon_boots": "Uncommon Boots",
+  "item.spellcast.uncommon_belt": "Uncommon Belt",
+  "item.spellcast.uncommon_amulet": "Uncommon Amulet",
+
+  "item.spellcast.common_boots": "Common Boots",
+  "item.spellcast.common_belt": "Common Belt",
+  "item.spellcast.common_amulet": "Common Amulet",
+
   "key.spellcast.rune_action": "Use rune",
   "key.spellcast.category": "SpellCast"
 
