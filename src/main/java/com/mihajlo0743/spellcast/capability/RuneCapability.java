@@ -1,6 +1,5 @@
 package com.mihajlo0743.spellcast.capability;
 
-import com.mihajlo0743.spellcast.Spellcast;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
@@ -34,6 +33,7 @@ public class RuneCapability implements ICapabilityProvider {
             public boolean canEquip(String identifier, LivingEntity livingEntity) {
                 return true;
             }
+
 
         });
     }

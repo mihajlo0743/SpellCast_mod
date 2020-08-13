@@ -1,24 +1,20 @@
-package com.mihajlo0743.spellcast.setup;
+package com.mihajlo0743.spellcast.handlers;
 
-import com.mihajlo0743.spellcast.Spellcast;
-import com.mihajlo0743.spellcast.capability.IStats;
-import com.mihajlo0743.spellcast.capability.StatsProvider;
-import com.mihajlo0743.spellcast.handlers.StatHandler;
 import com.mihajlo0743.spellcast.hud.SpellGUI;
 import com.mihajlo0743.spellcast.items.Rune;
+import com.mihajlo0743.spellcast.setup.KeyBinds;
 import net.minecraft.client.GameSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.event.CommandEvent;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import top.theillusivec4.curios.api.capability.CuriosCapability;
 
 public class InputHandler {
 
     public static boolean up = false;
+    //public static boolean mh = false;
+    //public static boolean oh = false;
 
 
     @SubscribeEvent
@@ -37,9 +33,10 @@ public class InputHandler {
                 if (!((Rune)stack).acrivate()) {
                     SpellGUI.DrawCenteredString("Skill not ready!");
                 }
-            } else return;
+            }
         }
-
+        //mh = KeyBinds.ModKeyBindings[1].isPressed();
+        //oh = KeyBinds.ModKeyBindings[2].isPressed();
 
         GameSettings settings = mc.gameSettings;
 

@@ -13,6 +13,8 @@ public class KeyBinds {
 
         //Assign all key binds to this array
         ModKeyBindings[0] = new KeyBinding("key.spellcast.rune_action", 340, "key.spellcast.category");
+        //ModKeyBindings[1] = new KeyBinding("key.spellcast.main_hand", 0, "key.spellcast.category");
+        //ModKeyBindings[2] = new KeyBinding("key.spellcast.off_hand", 0, "key.spellcast.category");
 
 
         //Actually register all keys
@@ -20,4 +22,5 @@ public class KeyBinds {
             ClientRegistry.registerKeyBinding(ModKeyBindings[i]);
         }
     }
+
 }

@@ -2,7 +2,6 @@ package com.mihajlo0743.spellcast.handlers;
 
 import com.mihajlo0743.spellcast.capability.IStats;
 import com.mihajlo0743.spellcast.capability.StatsProvider;
-import com.mihajlo0743.spellcast.setup.InputHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.event.TickEvent;

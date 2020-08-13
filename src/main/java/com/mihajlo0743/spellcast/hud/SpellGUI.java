@@ -9,7 +9,6 @@ import net.minecraft.client.gui.IngameGui;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Timer;
 import net.minecraft.world.BossInfo;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -17,8 +16,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import top.theillusivec4.curios.api.capability.CuriosCapability;
 
 import java.awt.*;
-
-import static org.lwjgl.glfw.GLFW.glfwSetWindowTitle;
 
 public class SpellGUI {
 
@@ -62,7 +59,8 @@ public class SpellGUI {
             // Draw items in GUI | WIP!
                 // Rune
             GlStateManager.pushMatrix();
-            RenderHelper.func_74520_c();
+            RenderHelper.enableGUIStandardItemLighting();
+            //RenderHelper.func_74520_c();
             GlStateManager.translatef((float)(left - 73/* + 8*/), (float)(top - 63/* + 12*/), 0.0F);
             GlStateManager.scalef(1.8f,1.8f,1.8f);
             GlStateManager.translatef((float)(-(left - 73/* + 8*/)), (float)(-(top - 63/* + 12*/)), 0.0F);
@@ -70,7 +68,7 @@ public class SpellGUI {
             GlStateManager.popMatrix();
                 // Equipment
             GlStateManager.pushMatrix();
-            RenderHelper.func_74520_c();
+            //RenderHelper.func_74520_c();
             GlStateManager.translatef((float)(left - 1*25 - 14), (float)(top - 24), 0.0F);
             GlStateManager.scalef(1.2f,1.2f,1.2f);
             GlStateManager.translatef((float)(-(left - 1*25 - 14)), (float) (-(top - 24)), 0.0F);
@@ -78,7 +76,7 @@ public class SpellGUI {
             GlStateManager.popMatrix();
 
             GlStateManager.pushMatrix();
-            RenderHelper.func_74520_c();
+            //RenderHelper.func_74520_c();
             GlStateManager.translatef((float)(left - 2*25 - 14), (float)(top - 24), 0.0F);
             GlStateManager.scalef(1.2f,1.2f,1.2f);
             GlStateManager.translatef((float)(-(left - 2*25 - 14)), (float) (-(top - 24)), 0.0F);
@@ -86,11 +84,12 @@ public class SpellGUI {
             GlStateManager.popMatrix();
 
             GlStateManager.pushMatrix();
-            RenderHelper.func_74520_c();
+            //RenderHelper.func_74520_c();
             GlStateManager.translatef((float)(left - 3*25 - 14), (float)(top - 24), 0.0F);
             GlStateManager.scalef(1.2f,1.2f,1.2f);
             GlStateManager.translatef((float)(-(left - 3*25 - 14)), (float) (-(top - 24)), 0.0F);
             itemRenderer.renderItemAndEffectIntoGUI(mc.player, mc.player.getCapability(CuriosCapability.INVENTORY).orElse(CuriosCapability.INVENTORY.getDefaultInstance()).getStackInSlot("spellamulet", 0), left - 3*25 - 14, top - 24);
+            RenderHelper.disableStandardItemLighting();
             GlStateManager.popMatrix();
 
         }

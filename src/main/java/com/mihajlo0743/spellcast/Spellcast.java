@@ -5,6 +5,8 @@ import com.mihajlo0743.spellcast.blocks.Tech_block;
 import com.mihajlo0743.spellcast.items.Amulet;
 import com.mihajlo0743.spellcast.items.Belt;
 import com.mihajlo0743.spellcast.items.Boots;
+import com.mihajlo0743.spellcast.items.gauntlets.FireGntl;
+import com.mihajlo0743.spellcast.items.gauntlets.LightningGntl;
 import com.mihajlo0743.spellcast.items.runes.DashRune;
 import com.mihajlo0743.spellcast.items.runes.InvisRune;
 import com.mihajlo0743.spellcast.items.runes.PlaceholderRune;
@@ -13,11 +15,13 @@ import com.mihajlo0743.spellcast.setup.ClientProxy;
 import com.mihajlo0743.spellcast.setup.IProxy;
 import com.mihajlo0743.spellcast.setup.ModSetup;
 import com.mihajlo0743.spellcast.setup.ServerProxy;
+import com.mihajlo0743.spellcast.tiles.VaultTile;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
 import net.minecraft.nbt.IntNBT;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -49,7 +53,7 @@ public class Spellcast
     public static ModSetup setup = new ModSetup();
     public static Configuration config;
     public static final String MODID = "spellcast";
-    public static final String VERSION = "0.2.26.20";
+    public static final String VERSION = "0.2.30.46";
 
     public Spellcast() {
         // Register the setup method for modloading
@@ -99,7 +103,7 @@ public class Spellcast
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
         LOGGER.info("HELLO from server starting");
-        event.getServer().getWorld(DimensionType.OVERWORLD).getGameRules().write().put("test", new IntNBT(0));
+        event.getServer().func_71218_a(DimensionType.OVERWORLD).getGameRules().write().put("test", new IntNBT(0));
     }
     @SubscribeEvent
     public void OnStartedS(EntityJoinWorldEvent event){
@@ -113,6 +117,10 @@ public class Spellcast
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
             event.getRegistry().register(new Tech_block());
+        }
+        @SubscribeEvent
+        public static void onTileReg(final RegistryEvent.Register<TileEntityType<?>> event){
+            event.getRegistry().register(TileEntityType.Builder.create(VaultTile::new, ModBlocks.TECH_BLOCK).build(null).setRegistryName(Spellcast.MODID, "vault_tile"));
         }
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
@@ -135,7 +143,9 @@ public class Spellcast
                     new Boots(Rarity.COMMON, 200, "common_boots"),
                     new Boots(Rarity.UNCOMMON, 300, "uncommon_boots"),
                     new Boots(Rarity.RARE, 500, "rare_boots"),
-                    new Boots(Rarity.EPIC, 900, "epic_boots")
+                    new Boots(Rarity.EPIC, 900, "epic_boots"),
+                    new FireGntl(),
+                    new LightningGntl()
             );
         }
 
