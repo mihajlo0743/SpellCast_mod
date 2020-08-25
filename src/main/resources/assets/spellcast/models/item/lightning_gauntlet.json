@@ -1,0 +1,32 @@
+{
+    "parent": "forge:item/default",
+    "loader": "forge:obj",
+    "model": "spellcast:models/item/lightning_gauntlet.obj",
+    "display": {
+        "thirdperson_righthand": {
+            "rotation": [ 51.7, -90, 235 ],
+            "translation": [ -4.3, 2, -3 ],
+            "scale": [ 0.55, -0.55, 0.55 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 51.7, 90, -235 ],
+            "translation": [ 4.3, 2.0, -3 ],
+            "scale": [ 0.55, -0.55, 0.55 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 90, 25 ],
+            "translation": [ 3.4, 9, 0 ],
+            "scale": [ 0.45, 0.45, 0.45 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, -90, -25 ],
+            "translation": [ -2, 9, 0 ],
+            "scale": [ 0.45, 0.45, 0.45 ]
+        },
+        "gui": {
+            "rotation": [ 0, -45, 25 ],
+            "translation": [ 0, 7, 0 ],
+            "scale": [ 1, 1, 1 ]
+        }
+    }
+}

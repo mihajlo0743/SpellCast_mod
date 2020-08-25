@@ -9,10 +9,15 @@ public class SpringstepRune extends Rune {
     }
 
     @Override
-    public boolean acrivate() {
+    public void acrivate() {
         /*Vec3d motion = Minecraft.getInstance().player.getMotion();
         Minecraft.getInstance().player.move(MoverType.SELF, new Vec3d(motion.x, 5, motion.z));*/
         //Spellcast.proxy.getLocalPlayer().addPotionEffect(new EffectInstance(Effects.LEVITATION, 20, 8));
-        return true;
+        super.acrivate();
+    }
+
+    @Override
+    public int getCooldown() {
+        return 1;
     }
 }

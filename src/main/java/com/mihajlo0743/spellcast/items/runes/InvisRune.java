@@ -11,10 +11,15 @@ public class InvisRune extends Rune {
     }
 
     @Override
-    public boolean acrivate() {
+    public void acrivate() {
 
-            Effects.INVISIBILITY.affectEntity(Spellcast.proxy.getLocalPlayer(), Spellcast.proxy.getLocalPlayer(), Spellcast.proxy.getLocalPlayer(), 1,1);
-            //Spellcast.proxy.getLocalPlayer().addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 200));
-        return true;
+        Effects.INVISIBILITY.affectEntity(Spellcast.proxy.getLocalPlayer(), Spellcast.proxy.getLocalPlayer(), Spellcast.proxy.getLocalPlayer(), 1,1);
+        //Spellcast.proxy.getLocalPlayer().addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 200));
+        super.acrivate();
+    }
+
+    @Override
+    public int getCooldown() {
+        return 2;
     }
 }

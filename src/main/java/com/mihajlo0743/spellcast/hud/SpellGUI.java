@@ -59,12 +59,14 @@ public class SpellGUI {
             // Draw items in GUI | WIP!
                 // Rune
             GlStateManager.pushMatrix();
+
             RenderHelper.enableGUIStandardItemLighting();
             //RenderHelper.func_74520_c();
             GlStateManager.translatef((float)(left - 73/* + 8*/), (float)(top - 63/* + 12*/), 0.0F);
             GlStateManager.scalef(1.8f,1.8f,1.8f);
             GlStateManager.translatef((float)(-(left - 73/* + 8*/)), (float)(-(top - 63/* + 12*/)), 0.0F);
-            itemRenderer.renderItemAndEffectIntoGUI(mc.player, mc.player.getCapability(CuriosCapability.INVENTORY).orElse(CuriosCapability.INVENTORY.getDefaultInstance()).getStackInSlot("spellrune", 0), left - 71, top - 61);
+            itemRenderer.renderItemIntoGUI(/*mc.player,*/ mc.player.getCapability(CuriosCapability.INVENTORY).orElse(CuriosCapability.INVENTORY.getDefaultInstance()).getStackInSlot("spellrune", 0), left - 71, top - 61);
+            //GlStateManager.popMatrix();
             GlStateManager.popMatrix();
                 // Equipment
             GlStateManager.pushMatrix();
@@ -91,6 +93,10 @@ public class SpellGUI {
             itemRenderer.renderItemAndEffectIntoGUI(mc.player, mc.player.getCapability(CuriosCapability.INVENTORY).orElse(CuriosCapability.INVENTORY.getDefaultInstance()).getStackInSlot("spellamulet", 0), left - 3*25 - 14, top - 24);
             RenderHelper.disableStandardItemLighting();
             GlStateManager.popMatrix();
+
+            float cd = Spellcast.proxy.getLocalPlayer().getCooldownTracker().getCooldown(mc.player.getCapability(CuriosCapability.INVENTORY).orElse(CuriosCapability.INVENTORY.getDefaultInstance()).getStackInSlot("spellrune", 0).getItem(), 1) * 10;
+            if (cd > 0)
+                gui.getFontRenderer().drawString(String.valueOf(cd).substring(0, Math.min(String.valueOf(cd).length(), 3)), left - 71, top - 75, Color.white.getRGB());
 
         }
     }

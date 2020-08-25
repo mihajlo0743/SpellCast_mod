@@ -1,6 +1,9 @@
 package com.mihajlo0743.spellcast.capability;
 
+import com.mihajlo0743.spellcast.items.Rune;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -34,7 +37,11 @@ public class RuneCapability implements ICapabilityProvider {
                 return true;
             }
 
-
+            @Override
+            public void onEquipped(String identifier, LivingEntity livingEntity) {
+                Item item = livingEntity.getCapability(CuriosCapability.INVENTORY).orElse(CuriosCapability.INVENTORY.getDefaultInstance()).getStackInSlot(identifier, 0).getItem();
+                ((PlayerEntity)livingEntity).getCooldownTracker().setCooldown(item, ((Rune)item).getCooldown());
+            }
         });
     }
 

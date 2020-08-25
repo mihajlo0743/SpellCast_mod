@@ -19,4 +19,9 @@ public class ServerProxy implements IProxy {
 
     }
 
+    @Override
+    public void drawLightning() {
+        throw new IllegalStateException("Cant render on server!");
+    }
+
 }

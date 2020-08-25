@@ -41,8 +41,11 @@ public abstract class Rune extends Item {
         }).orElse(ItemStack.EMPTY));
     }
 
-    public abstract boolean acrivate();
+    public void acrivate(){
+        Spellcast.proxy.getLocalPlayer().getCooldownTracker().setCooldown(this, this.getCooldown());
+    }
 
+    public abstract int getCooldown();
     @Nullable
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {

@@ -9,7 +9,14 @@ public class PlaceholderRune extends Rune {
     }
 
     @Override
-    public boolean acrivate() {
-        return false;
+    public void acrivate() {
+        super.acrivate();
+    }
+
+
+
+    @Override
+    public int getCooldown() {
+        return 1;
     }
 }

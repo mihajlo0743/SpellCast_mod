@@ -5,16 +5,14 @@ import com.mihajlo0743.spellcast.blocks.Tech_block;
 import com.mihajlo0743.spellcast.items.Amulet;
 import com.mihajlo0743.spellcast.items.Belt;
 import com.mihajlo0743.spellcast.items.Boots;
+import com.mihajlo0743.spellcast.items.gauntlets.AirGauntlet;
 import com.mihajlo0743.spellcast.items.gauntlets.FireGntl;
 import com.mihajlo0743.spellcast.items.gauntlets.LightningGntl;
 import com.mihajlo0743.spellcast.items.runes.DashRune;
 import com.mihajlo0743.spellcast.items.runes.InvisRune;
 import com.mihajlo0743.spellcast.items.runes.PlaceholderRune;
 import com.mihajlo0743.spellcast.items.runes.SpringstepRune;
-import com.mihajlo0743.spellcast.setup.ClientProxy;
-import com.mihajlo0743.spellcast.setup.IProxy;
-import com.mihajlo0743.spellcast.setup.ModSetup;
-import com.mihajlo0743.spellcast.setup.ServerProxy;
+import com.mihajlo0743.spellcast.setup.*;
 import com.mihajlo0743.spellcast.tiles.VaultTile;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -53,7 +51,7 @@ public class Spellcast
     public static ModSetup setup = new ModSetup();
     public static Configuration config;
     public static final String MODID = "spellcast";
-    public static final String VERSION = "0.2.30.46";
+    public static final String VERSION = "0.2.32.25";
 
     public Spellcast() {
         // Register the setup method for modloading
@@ -71,6 +69,7 @@ public class Spellcast
 
     private void setup(final FMLCommonSetupEvent event)
     {
+        Reg.init();
         setup.init();
         proxy.init();
     }
@@ -145,7 +144,8 @@ public class Spellcast
                     new Boots(Rarity.RARE, 500, "rare_boots"),
                     new Boots(Rarity.EPIC, 900, "epic_boots"),
                     new FireGntl(),
-                    new LightningGntl()
+                    new LightningGntl(),
+                    new AirGauntlet()
             );
         }
 

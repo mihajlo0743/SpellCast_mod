@@ -9,4 +9,6 @@ public interface IProxy {
     PlayerEntity getLocalPlayer();
 
     void init();
+
+    void drawLightning();
 }

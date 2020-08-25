@@ -1,6 +1,7 @@
 package com.mihajlo0743.spellcast.entity;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
@@ -10,6 +11,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 public class FlameBall extends FireballEntity {
+    private LivingEntity caster;
     private float radius;
     private float damage;
     public FlameBall(World worldIn, double x, double y, double z, double accelX, double accelY, double accelZ, float explosionRadius, float damage) {
@@ -28,6 +30,9 @@ public class FlameBall extends FireballEntity {
          }
 
          this.world.createExplosion((Entity)null, this.posX, this.posY, this.posZ, radius, false, Explosion.Mode.NONE);
+         /*this.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.posX,this.posY,this.posZ,this.posX+1,this.posY+1,this.posZ+1).grow(radius)).forEach((e)->{
+             e.attackEntityFrom(DamageSource.MAGIC, damage);
+         });*/
          this.remove();
       }
     }

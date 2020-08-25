@@ -1,5 +1,6 @@
 package com.mihajlo0743.spellcast.handlers;
 
+import com.mihajlo0743.spellcast.Spellcast;
 import com.mihajlo0743.spellcast.hud.SpellGUI;
 import com.mihajlo0743.spellcast.items.Rune;
 import com.mihajlo0743.spellcast.setup.KeyBinds;
@@ -30,9 +31,9 @@ public class InputHandler {
         {
             Item stack = mc.player.getCapability(CuriosCapability.INVENTORY).orElse(CuriosCapability.INVENTORY.getDefaultInstance()).getStackInSlot("spellrune", 0).getItem();
             if (stack instanceof Rune){
-                if (!((Rune)stack).acrivate()) {
+                if (Spellcast.proxy.getLocalPlayer().getCooldownTracker().hasCooldown(stack)) {
                     SpellGUI.DrawCenteredString("Skill not ready!");
-                }
+                } else ((Rune)stack).acrivate();
             }
         }
         //mh = KeyBinds.ModKeyBindings[1].isPressed();
