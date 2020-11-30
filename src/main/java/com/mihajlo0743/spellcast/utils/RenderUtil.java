@@ -38,7 +38,7 @@ public class RenderUtil {
         //324 75 -955
 
         if (!l_flag) return;
-        Spellcast.LOGGER.debug("render!");
+        //Spellcast.LOGGER.debug("render!");
         List<AbstractClientPlayerEntity> players = Minecraft.getInstance().world.getPlayers();
         PlayerEntity myplayer = Minecraft.getInstance().player;
 
@@ -48,9 +48,10 @@ public class RenderUtil {
 
             ItemStack heldItem = player.getHeldItem(Hand.MAIN_HAND);
             if (player.isHandActive() && heldItem.getItem() instanceof LightningGntl) {
-                drawLightning(player.getPositionVec(), end, 0,0,0,0,10,90,1,player,1);
+                drawLightning(player.getPositionVec(), end, 0,0,0,0,10,90,1,player,event.getPartialTicks());
             }
         }
+        //l_flag = false;
     }
 
 
@@ -69,7 +70,7 @@ public class RenderUtil {
         double distance = from.subtract(to).length();
         long gameTime = player.world.getGameTime();
         double v = gameTime;
-        //float additiveThickness = (thickness * 3.5f);
+        float additiveThickness = (thickness * 3.5f);
         BufferBuilder wr = Tessellator.getInstance().getBuffer();
 
         GlStateManager.pushMatrix();
@@ -87,10 +88,10 @@ public class RenderUtil {
         GlStateManager.rotatef(MathHelper.lerp(ticks, player.rotationPitch, player.prevRotationPitch), 1, 0, 0);
 
         // additive laser beam
-        //GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        //GlStateManager.color4f(r, g, b, 0.7f);
-        //Minecraft.getInstance().getTextureManager().bindTexture(laserBeamGlow);
-        //drawLightning(xOffset, yOffset, zOffset, additiveThickness, activeHand, distance, wr, 0.5, 1, ticks);
+        GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        GlStateManager.color4f(r, g, b, 0.7f);
+        Minecraft.getInstance().getTextureManager().bindTexture(lightning/*laserBeamGlow*/);
+        drawLightningBolt(xOffset, yOffset, zOffset, additiveThickness, activeHand, distance, wr, 0.5, 1, ticks);
 
         // main laser, colored part
         GlStateManager.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -98,9 +99,9 @@ public class RenderUtil {
         Minecraft.getInstance().getTextureManager().bindTexture(lightning);
         drawLightningBolt(xOffset, yOffset, zOffset, thickness, activeHand, distance, wr, v, v + distance * 1.5, ticks);
         // white core
-        //GlStateManager.color3f(MiningProperties.getColor(stack, MiningProperties.COLOR_RED_INNER) / 255f, MiningProperties.getColor(stack, MiningProperties.COLOR_GREEN_INNER) / 255f, MiningProperties.getColor(stack, MiningProperties.COLOR_BLUE_INNER) / 255f);
-        //Minecraft.getInstance().getTextureManager().bindTexture(laserBeam);
-        //drawLightning(xOffset, yOffset, zOffset, thickness / 2, activeHand, distance, wr, v, v + distance * 1.5, ticks);
+        GlStateManager.color3f(0, 0.15f, 0.85f);
+        Minecraft.getInstance().getTextureManager().bindTexture(lightning/*laserBeam*/);
+        drawLightningBolt(xOffset, yOffset, zOffset, thickness / 2, activeHand, distance, wr, v, v + distance * 1.5, ticks);
         GlStateManager.disableColorMaterial();
         GlStateManager.disableTexture();
         GlStateManager.disableBlend();
